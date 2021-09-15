@@ -22,8 +22,9 @@ finwiz_url = 'https://finviz.com/quote.ashx?t='
 
 
 def get_data(symbol):
-    return yf.download(symbol,'2020-01-01','2020-12-31')
+    return yf.download(symbol,'2020-12-01','2020-12-31', interval = "1m")
 
+# ===========BUY AND HOLD ============= #
 def get_entry_price(data):
     return data.iloc[0,3]
 
@@ -31,18 +32,35 @@ def get_exit_profit(data):
     return data.iloc[-1, 3] - data.iloc[0,3]
 
 
-#Implementing Boolliger Bands Buy Sell Strat
-def buy_sell(symbol, data):
+#Implementing Buy Sell Strat
+def buy_signal(symbol, data):
     
-    #add to buy and sell
+    #add to buy column to data
+    
+    #use model to get prediction,
     
     '''
     STRAT:
     Buy:
+        call model, if model predicts 1, buy
+    
+    Not Buy:
+        model predicts 0
+    '''
+#FOR BACKTESTING
+def sell_signal(symbol, data):
+    
+    #get buy signal, look into future, find signals
+    
+    '''
+    STRAT:
     
     Sell:
-
+        Price increases by 1% (or X%)
+        Price decreases by .5% (or Y%)
+    
     '''
+
 
 def plot(data, symbol):
     fig = plt.figure(figsize=(8, 6))

@@ -138,27 +138,12 @@ def get_RSI(data):
 
     return data
 
-<<<<<<< HEAD
 #Implementing Buy Sell Strat
 def buy_signal(symbol, data):
     
     #add to buy column to data
     
     #use model to get prediction,
-=======
-#Implementing Boolliger Bands Buy Sell Strat
-def buy_sell(symbol, data, news_sentiment):
-    buy_list = []
-    sell_list = []
-
-    senti_buy_list = []
-    senti_sell_list = []
-
-    # senti_bought = False
-
-    bought = False
-    above_upper = False
->>>>>>> parent of a816c58... cleaned backtest, ready to input
     
     #flag_short = False
     #print(len(data))
@@ -166,7 +151,6 @@ def buy_sell(symbol, data, news_sentiment):
     '''
     STRAT:
     Buy:
-<<<<<<< HEAD
         call model, if model predicts 1, buy
     
     Not Buy:
@@ -184,19 +168,6 @@ def sell_signal(symbol, data):
         Price increases by 1% (or X%)
         Price decreases by .5% (or Y%)
     
-=======
-        Check previous days ago, if   (there is a day that is less than or equal to the lower band) and 
-                                (current day is 105% of lower band or slope of lower line > -.1 and < .1)
-
-                                or (slope of upper band is >.8)
-
-                                or semtiment is postive
-    
-    Sell:
-        If the price hits the lower band, this protects risk from bad buy/sell decisions and allows price to ride the trend
-        or sell when sentiment is negative
-        
->>>>>>> parent of a816c58... cleaned backtest, ready to input
     '''
     # temp_counter = 0
 

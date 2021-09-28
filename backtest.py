@@ -110,6 +110,7 @@ def get_exit_profit(data):
 def get_BBands(data):
     mid, top, bot = btalib.bbands(data, period = 20, devs = 2.0)
     midSell, topSell, botSell = btalib.bbands(data, period = 20, devs = 2.0)
+<<<<<<< HEAD
 
 
     data["Mid BBand"] = list(mid)
@@ -145,12 +146,56 @@ def buy_signal(symbol, data):
     
     #use model to get prediction,
     
+=======
+
+
+    data["Mid BBand"] = list(mid)
+    data["Top BBand"] = list(top)
+    data["Bot BBand"] = list(bot)
+    data["Sell BBand"] = list(botSell)
+
+    # BBValue = (data["Close"] - data["Mid BBand"])/ (2 * data["Close"].std(ddof=0))
+    # data["BB Value"] = BBValue
+
+    return data
+
+def get_EMA(data):
+    ShortEMA = btalib.ema(data, period=12)
+    LongEMA = btalib.ema(data, period=200)
+
+    data["ShortEMA"] = ShortEMA.df
+    data["LongEMA"] = LongEMA.df
+
+    return data
+
+def get_RSI(data):
+    rsi = btalib.rsi(data, period = 14)
+
+    data["RSI"] = rsi.df
+
+    return data
+
+#Implementing Boolliger Bands Buy Sell Strat
+def buy_sell(symbol, data, news_sentiment):
+    buy_list = []
+    sell_list = []
+
+    senti_buy_list = []
+    senti_sell_list = []
+
+    # senti_bought = False
+
+    bought = False
+    above_upper = False
+    
+>>>>>>> parent of a816c58... cleaned backtest, ready to input
     #flag_short = False
     #print(len(data))
 
     '''
     STRAT:
     Buy:
+<<<<<<< HEAD
         call model, if model predicts 1, buy
     
     Not Buy:
@@ -168,6 +213,19 @@ def sell_signal(symbol, data):
         Price increases by 1% (or X%)
         Price decreases by .5% (or Y%)
     
+=======
+        Check previous days ago, if   (there is a day that is less than or equal to the lower band) and 
+                                (current day is 105% of lower band or slope of lower line > -.1 and < .1)
+
+                                or (slope of upper band is >.8)
+
+                                or semtiment is postive
+    
+    Sell:
+        If the price hits the lower band, this protects risk from bad buy/sell decisions and allows price to ride the trend
+        or sell when sentiment is negative
+        
+>>>>>>> parent of a816c58... cleaned backtest, ready to input
     '''
     # temp_counter = 0
 
@@ -324,7 +382,10 @@ def sell_signal(symbol, data):
 
 
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of a816c58... cleaned backtest, ready to input
 
 def plot(data, symbol):
     fig = plt.figure(figsize=(8, 6))
